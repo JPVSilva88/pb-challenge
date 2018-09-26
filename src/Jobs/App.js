@@ -59,19 +59,17 @@ export default class App extends Component {
     render() {
         const {jobCount} = this.state
 
+        const possibleJobNums = [0,1,2,3]
+
         return (
             <div>
                 <div className="group">
                     <ControlLabel>How many jobs do you have?</ControlLabel>
                     <ButtonGroup>
-                        <Button onClick={this.handleJobCount.bind(this, 0)}
-                                className={jobCount === 0 ? "selected" : null}>0</Button>
-                        <Button onClick={this.handleJobCount.bind(this, 1)}
-                                className={jobCount === 1 ? "selected" : null}>1</Button>
-                        <Button onClick={this.handleJobCount.bind(this, 2)}
-                                className={jobCount === 2 ? "selected" : null}>2</Button>
-                        <Button onClick={this.handleJobCount.bind(this, 3)}
-                                className={jobCount === 3 ? "selected" : null}>3</Button>
+                        {possibleJobNums.map((num) => {
+                            return <Button onClick={this.handleJobCount.bind(this, num)}
+                                    className={jobCount === num ? "selected" : null}>{num}</Button>
+                        })}
                     </ButtonGroup>
                 </div>
 
