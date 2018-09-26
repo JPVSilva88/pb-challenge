@@ -1,5 +1,6 @@
 import React, {Component} from "react"
-import {Button, ListGroupItem, ListGroup} from "react-bootstrap"
+import ReactDOM from "react-dom"
+import {Button, ListGroupItem, ListGroup, FormGroup, ControlLabel, FormControl} from "react-bootstrap"
 import './App.css';
 
 export default class App extends Component {
@@ -12,19 +13,21 @@ export default class App extends Component {
   }
 
   handleClick = () => {
-    const p = prompt();
+    const val = this.task.value;
 
-    if(!p || p === "") {
+    if(!val || val === "") {
       return;
     }
 
     this.setState(({data}) => {
       data.push({
-        text: p,
+        text: val,
         isItem: true
       })
       return {data}
     })
+
+    this.task.value = "";
   }
 
   handleRemove = (i) => {
@@ -53,7 +56,13 @@ export default class App extends Component {
             </ListGroupItem>)
           }
         </ListGroup>
-        <Button onClick={this.handleClick}>Add</Button>
+        <form>
+          <FormGroup>
+            <ControlLabel>Add Task</ControlLabel>
+            <FormControl inputRef={input => this.task = input} />
+          </FormGroup>
+          <Button onClick={this.handleClick}>Add</Button>
+        </form>
       </div>
     )
   }
