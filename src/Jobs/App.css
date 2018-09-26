@@ -1,0 +1,11 @@
+.group {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+}
+
+.btn-group {
+    display: block;
+    height: 30px;
+}
